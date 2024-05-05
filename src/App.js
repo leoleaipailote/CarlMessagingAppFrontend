@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+  import './App.css';
+  import { socket } from './socket';
+  import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  function App() {
+    const [message, setMessage] = useState('');
 
-export default App;
+    const sendMessage = (e) => {
+      e.preventDefault();
+      socket.emit('receiveMessage', message)
+    }
+    return (
+      <div className="App">
+        <header className="App-header">
+          <form onSubmit={sendMessage}>
+            <label>
+              Message:    
+              <input type="text" onChange={e => setMessage(e.target.value)}/>
+            </label>
+            <button type="submit">Submit Message</button>
+          </form>
+            <p>IP: {process.env.REACT_APP_IP}</p>
+        </header>
+      </div>
+    );
+  }
+
+  export default App;

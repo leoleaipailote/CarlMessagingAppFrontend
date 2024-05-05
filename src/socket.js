@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
 // "undefined" means the URL will be computed from the `window.location` object
-const URL = 'https://4bbb-149-43-203-109.ngrok-free.app'
+const URL = 'http://149.43.203.109:3000'
 
 export const socket = io(URL , { transports: ["websocket"] });

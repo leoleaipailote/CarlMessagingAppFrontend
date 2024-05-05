@@ -27,7 +27,7 @@
 
     const getPreviousMessages = async () => {
       try{
-        const messageArray = await axios.get(`http://localhost:3000/api/v1/Messages/Messages/getMessages`)
+        const messageArray = await axios.get(`https://carlbackend.fly.dev/api/v1/Messages/Messages/getMessages`)
         const stringifyArray = convertMessagesToStrings(messageArray.data);
         setMessages(stringifyArray);
         console.log(stringifyArray);
